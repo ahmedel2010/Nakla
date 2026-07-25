@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", var(--font-sans);
+  --font-serif: "Crimson Pro", serif;
+  
+  --color-brand: #0f172a;
+  --color-accent: #38bdf8;
+  --color-surface: #ffffff;
+  --color-background: #f8fafc;
+
+  --tracking-tightest: -0.04em;
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    @apply font-sans antialiased bg-background text-brand selection:bg-accent/20 selection:text-brand;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tightest;
+  }
+
+  
+  button, 
+  a, 
+  select,
+  label,
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="submit"],
+  input[type="button"],
+  input[type="file"],
+  [role="button"],
+  .cursor-pointer {
+    cursor: pointer !important;
+  }
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-50;
+}
+
+.premium-card {
+  @apply bg-white dark:bg-slate-900/40 border border-slate-200/60 dark:border-slate-800/60 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl transition-all duration-500;
+}
+
+.premium-button-primary {
+  @apply relative overflow-hidden px-6 py-3 bg-brand dark:bg-white text-white dark:text-brand font-bold rounded-[1.2rem] shadow-lg shadow-brand/15 dark:shadow-none hover:scale-[1.04] active:scale-95 transition-all duration-300 flex items-center justify-center gap-2.5 hover:shadow-2xl hover:shadow-brand/30 dark:hover:shadow-[0_0_25px_rgba(255,255,255,0.25)];
+}
+
+.premium-button-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: all 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.dark .premium-button-primary::after {
+  background: linear-gradient(
+    to right,
+    rgba(15, 23, 42, 0) 0%,
+    rgba(15, 23, 42, 0.15) 50%,
+    rgba(15, 23, 42, 0) 100%
+  );
+}
+
+.premium-button-primary:hover::after {
+  left: 125%;
+}
+
+.premium-button-ghost {
+  @apply px-4 py-2 text-slate-500 dark:text-slate-400 font-bold rounded-[0.8rem] hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 flex items-center gap-2;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-brand via-brand/80 to-slate-500 dark:from-white dark:via-slate-200 dark:to-slate-400;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    text-rendering: optimizeSpeed;
+  }
+
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
