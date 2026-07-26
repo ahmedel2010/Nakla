@@ -1,9 +1,15 @@
 import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
 
 export async function applyStatic(app: express.Application) {
+  // على Vercel لا نحتاج للتعامل مع Static Files من خلال Express لأن Vercel يتكفل بها تلقائياً
+  if (process.env.VERCEL) {
+    return;
+  }
+
   if (process.env.NODE_ENV !== "production") {
+    // 💡 استخدام Dynamic Import هنا يمنع Vercel من تحميل Vite و Rollup تماماً
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",

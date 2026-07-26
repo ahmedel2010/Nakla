@@ -1,7 +1,6 @@
 import express from "express";
 import { PORT } from "./config.js";
 import { applyMiddleware } from "./middleware.js";
-import { applyStatic } from "./static.js";
 import { cvRouter } from "./routes/cv.js";
 import { tailorRouter } from "./routes/tailor.js";
 import { builderRouter } from "./routes/builder.js";
@@ -32,8 +31,9 @@ app.use("/api", (err: any, req: express.Request, res: express.Response, next: ex
 });
 
 // تشغيل Vite static server فقط في بيئة التطوير المحلية (Local Development)
-// وتخطيه تماماً عند التشغيل على Vercel
+// واستخدام dynamic import لمنع تحميل Vite/Rollup نهائياً على Vercel
 if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+  const { applyStatic } = await import("./static.js");
   await applyStatic(app);
 
   app.listen(PORT, "0.0.0.0", () => {
