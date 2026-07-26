@@ -1,6 +1,6 @@
 import express from "express";
 import { Type } from "@google/genai";
-import { getGeminiClient, generateContentWithRetry, parseGeminiJson, handleGeminiError } from "../lib/gemini";
+import { getGeminiClient, generateContentWithRetry, parseGeminiJson, handleGeminiError } from "../lib/gemini.js";
 
 export const tailorRouter = express.Router();
 
@@ -23,7 +23,7 @@ tailorRouter.post("/tailor-cv", async (req, res): Promise<any> => {
       (lang === "en"
         ? "- Deliver all texts entirely in English."
         : "- Keep the matching analysis and changes made in Arabic.\n" +
-          "- Keep the tailored CV in the language of the original CV, preferring English for technical/professional CVs.\n\n") +
+        "- Keep the tailored CV in the language of the original CV, preferring English for technical/professional CVs.\n\n") +
       "CORE CONTENT REQUIREMENTS:\n" +
       "1. summary: Write a punchy, professional 3-4 line ATS-optimized career summary tailored specifically to the target job.\n" +
       "2. workExperience: Rephrase each bullet to emphasize responsibilities matching the job description, with strong active verbs and quantified metrics.\n" +

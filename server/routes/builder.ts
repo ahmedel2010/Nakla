@@ -1,5 +1,5 @@
 import express from "express";
-import { getGeminiClient, generateContentWithRetry, parseGeminiJson, handleGeminiError } from "../lib/gemini";
+import { getGeminiClient, generateContentWithRetry, parseGeminiJson, handleGeminiError } from "../lib/gemini.js";
 
 export const builderRouter = express.Router();
 

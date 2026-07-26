@@ -1,5 +1,5 @@
 import express from "express";
-import { getGeminiClient, generateContentWithRetry, handleGeminiError } from "../lib/gemini";
+import { getGeminiClient, generateContentWithRetry, handleGeminiError } from "../lib/gemini.js";
 
 export const coverLetterRouter = express.Router();
 
@@ -25,12 +25,14 @@ coverLetterRouter.post("/generate-cover-letter", async (req, res): Promise<any> 
 
     if (cvFile && cvFile.data && cvFile.mimeType) {
       parts.push({ inlineData: { mimeType: cvFile.mimeType, data: cvFile.data } });
-      parts.push({ text: `Job Description to match:\n"""
+      parts.push({
+        text: `Job Description to match:\n"""
 ${jobDescription}
 """
 Please write a custom cover letter. Do NOT use fake names; use [Your Name] as a placeholder if the name isn't clear from the CV.` });
     } else {
-      parts.push({ text: `Job Description:\n"""
+      parts.push({
+        text: `Job Description:\n"""
 ${jobDescription}
 """
 

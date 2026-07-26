@@ -1,6 +1,6 @@
 import express from "express";
 import { Type } from "@google/genai";
-import { getGeminiClient, generateContentWithRetry, parseGeminiJson, handleGeminiError } from "../lib/gemini";
+import { getGeminiClient, generateContentWithRetry, parseGeminiJson, handleGeminiError } from "../lib/gemini.js";
 
 export const translateRouter = express.Router();
 

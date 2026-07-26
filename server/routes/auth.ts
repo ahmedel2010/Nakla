@@ -1,6 +1,6 @@
 import express from "express";
 import nodemailer from "nodemailer";
-import { verificationCache, generateVerificationCode } from "../lib/store";
+import { verificationCache, generateVerificationCode } from "../lib/store.js";
 
 export const authRouter = express.Router();
 
