@@ -1,8 +1,8 @@
 import express from "express";
 import crypto from "crypto";
 import { Type } from "@google/genai";
-import { getGeminiClient, generateContentWithRetry, parseGeminiJson, handleGeminiError } from "../lib/gemini";
-import { cvEvaluationCache } from "../lib/cache";
+import { getGeminiClient, generateContentWithRetry, parseGeminiJson, handleGeminiError } from "../lib/gemini.js";
+import { cvEvaluationCache } from "../lib/cache.js";
 
 export const cvRouter = express.Router();
 
@@ -44,7 +44,7 @@ cvRouter.post("/evaluate-cv", async (req, res): Promise<any> => {
     }
 
     const response = await generateContentWithRetry(ai, {
-      model: "gemini-3.5-flash",
+      model: "gemini-2.5-flash",
       contents: parts,
       config: {
         systemInstruction,
@@ -102,7 +102,7 @@ cvRouter.post("/generate-corrected-cv", async (req, res): Promise<any> => {
       (lang === "en"
         ? "- Write the corrected CV and all field values entirely in English."
         : "- If the input CV was mostly in Arabic, write the corrected text and terms in Arabic.\n" +
-          "- If the input CV was mostly in English, or a mix of Arabic and English, write the corrected version in English.\n\n") +
+        "- If the input CV was mostly in English, or a mix of Arabic and English, write the corrected version in English.\n\n") +
       "CORE CONTENT REQUIREMENTS:\n" +
       "1. Summary: Write an incredibly punchy, professional 3-4 line ATS-optimized career summary packed with strong keywords.\n" +
       "2. Work Experience: Rephrase each experience bullet point to start with a strong active verb and infuse quantified metrics/achievement percentages.\n" +
@@ -160,7 +160,7 @@ cvRouter.post("/generate-corrected-cv", async (req, res): Promise<any> => {
     };
 
     const response = await generateContentWithRetry(ai, {
-      model: "gemini-1.5-pro",
+      model: "gemini-2.5-pro",
       contents: parts,
       config: {
         systemInstruction,
