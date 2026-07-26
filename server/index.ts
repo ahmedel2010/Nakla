@@ -31,10 +31,11 @@ app.use("/api", (err: any, req: express.Request, res: express.Response, next: ex
   res.status(500).json({ error: "Internal Server Error" });
 });
 
-await applyStatic(app);
+// تشغيل Vite static server فقط في بيئة التطوير المحلية (Local Development)
+// وتخطيه تماماً عند التشغيل على Vercel
+if (process.env.NODE_ENV !== "production" && !process.env.VERCEL) {
+  await applyStatic(app);
 
-// ملاحظة: على Vercel السيرفر بيشتغل كـ Serverless Function بدون الحاجة لـ app.listen
-if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on port ${PORT} in ${process.env.NODE_ENV || "development"} mode.`);
   });
