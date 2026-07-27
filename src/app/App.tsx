@@ -4,7 +4,6 @@ import { BannerSlider } from "../shared/components/BannerSlider";
 import { BarChart3, Edit3, MessageSquareText, FileText, User, LogOut, Sun, Moon, Languages, Lock, Target, X, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { translations } from "../shared/lib/translations";
-import professionalBg from "../assets/images/professional_abstract_background_1780616998517.png";
 
 const AuthScreen = React.lazy(() => import("../features/auth/AuthScreen").then(module => ({ default: module.AuthScreen })));
 const CVAuditor = React.lazy(() => import("../features/cv-auditor/CVAuditor").then(module => ({ default: module.CVAuditor })));
@@ -117,17 +116,20 @@ export default function App() {
     return (
       <div className="flex flex-col min-h-screen w-full bg-[#f8fafc] dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased relative overflow-hidden" dir={lang === "ar" ? "rtl" : "ltr"}>
 
-        <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-          <img
-            src={professionalBg}
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover opacity-[0.08] dark:opacity-[0.14] mix-blend-luminosity select-none"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-radial-gradient from-transparent to-[#f8fafc] dark:to-slate-950/80 pointer-events-none" />
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+          {/* Ambient gradients */}
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full opacity-60 dark:opacity-80" style={{ background: 'radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%)', transform: 'translateZ(0)' }} />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full opacity-60 dark:opacity-80" style={{ background: 'radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)', transform: 'translateZ(0)' }} />
+          
+          {/* Subtle SVG Grid Pattern */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.06] mix-blend-overlay" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="bg-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#bg-grid)" />
+          </svg>
         </div>
 
         <header className="sticky top-4 z-50 w-full px-4 sm:px-6 lg:px-8 pointer-events-none shrink-0 mb-8" dir={lang === "ar" ? "rtl" : "ltr"}>

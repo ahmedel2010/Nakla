@@ -17,7 +17,7 @@ export const BannerSlider: React.FC<BannerSliderProps> = ({ lang, onCtaClick }) 
       tag: "",
       title: "أعد صياغة مستقبلك المهني بدقة عالمية",
       desc: "نظام تدقيق السير الذاتية الأول الذي يستخدم معايير الشركات الكبرى (Fortune 500) لضمان عبور نظام الـ ATS بنجاح.",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=60&w=1400",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=70&fm=webp",
       cta: "ابدأ الفحص المجاني"
     },
     {
@@ -25,7 +25,7 @@ export const BannerSlider: React.FC<BannerSliderProps> = ({ lang, onCtaClick }) 
       tag: "",
       title: "حوّل رهبة المقابلات إلى فرص حقيقية",
       desc: "بيئة تدريبية تفاعلية تحاكي مقابلات العمل الحقيقية مع تحليل فوري لأدائك بمساعدة خبراء التوظيف.",
-      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=60&w=1400",
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=70&fm=webp",
       cta: "ابدأ التدريب الآن"
     },
     {
@@ -33,15 +33,15 @@ export const BannerSlider: React.FC<BannerSliderProps> = ({ lang, onCtaClick }) 
       tag: "",
       title: "رسائل تقديم تخطف الأنظار في ثوانٍ",
       desc: "نظامنا يبني خطاب تقديم مخصص لكل وظيفة يبرز نقاط قوتك الفريدة ويقنع مسؤولي التوظيف.",
-      image: "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=60&w=1400",
+      image: "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&w=800&q=70&fm=webp",
       cta: "أنشئ خطابك الآن"
     },
     {
       id: 4,
       tag: "",
       title: "ملاءمة سيرتك الذاتية لاجتياز الفرز",
-      desc: "نظامنا الذكي يقوم بضبط وتخصيص سيرتك الذاتية لتتطابق تمامًا مع متطلبات الوظيفة التي تتقدم إليها، مما يضاعف فرص قبولك بنجاح.",
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=60&w=1400",
+      desc: "نظامنا الذكي يقوم بضبط وتخصيص سيرتك الذاتية لتتطابق تمامًا مع متمتطلبات الوظيفة التي تتقدم إليها، مما يضاعف فرص قبولك بنجاح.",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=70&fm=webp",
       cta: "ابدأ الملاءمة الآن"
     }
   ] : [
@@ -50,7 +50,7 @@ export const BannerSlider: React.FC<BannerSliderProps> = ({ lang, onCtaClick }) 
       tag: "PROFESSIONAL AUDIT",
       title: "Reengineer Your Career with Global Precision",
       desc: "The world's leading CV auditing engine using Fortune 500 standards to ensure your profile bypasses complex ATS filters seamlessly.",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=60&w=1400",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=70&fm=webp",
       cta: "Start Free Audit"
     },
     {
@@ -58,7 +58,7 @@ export const BannerSlider: React.FC<BannerSliderProps> = ({ lang, onCtaClick }) 
       tag: "SMART SIMULATION",
       title: "Turn Interview Anxiety into Real Opportunities",
       desc: "Dynamic training environments that mirror real-world recruitment cycles with instant feedback from industry hiring experts.",
-      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=60&w=1400",
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=70&fm=webp",
       cta: "Interview Coaching"
     },
     {
@@ -66,7 +66,7 @@ export const BannerSlider: React.FC<BannerSliderProps> = ({ lang, onCtaClick }) 
       tag: "STRATEGIC TAILORING",
       title: "Narratives That Capture Interest in Seconds",
       desc: "Stop sending generic messages. Our engine builds hyper-tailored cover letters that align your skills to the job's core requirements.",
-      image: "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=60&w=1400",
+      image: "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&w=800&q=70&fm=webp",
       cta: "Generate Letter"
     },
     {
@@ -74,7 +74,7 @@ export const BannerSlider: React.FC<BannerSliderProps> = ({ lang, onCtaClick }) 
       tag: "JOB MATCHING",
       title: "Tailor Your CV to Every Job",
       desc: "Our smart engine precisely adjusts and tailors your CV to perfectly match the requirements of the job you're applying for, multiplying your chances of success.",
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=60&w=1400",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=70&fm=webp",
       cta: "Start Tailoring Now"
     }
   ], [lang]);

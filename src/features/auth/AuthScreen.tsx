@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { LogIn, UserPlus, Mail, Lock, User, Briefcase, Eye, EyeOff, CheckCircle2, AlertCircle, Sparkles, HelpCircle, ShieldCheck, Clock, ArrowRight, KeyRound, ExternalLink, Zap, Target, LineChart } from "lucide-react";
 import { translations } from "../../shared/lib/translations";
-import professionalBg from "../assets/images/professional_abstract_background_1780616998517.png";
 
 interface AuthScreenProps {
   onSuccess: (userData: { name: string; email: string; role: string; photo?: string }) => void;
