@@ -103,14 +103,20 @@ authRouter.get(["/auth/callback", "/auth/callback/"], async (req, res): Promise<
           <h2>تم تسجيل الدخول بنجاح!</h2>
           <p>جاري مزامنة بيانات الحساب...</p>
           <script>
+            var user = ${JSON.stringify(sanitizedUser)};
             try {
-              if (window.opener) {
-                window.opener.postMessage({ type: 'OAUTH_AUTH_SUCCESS', user: ${JSON.stringify(sanitizedUser)} }, '*');
-                window.close();
+              if (window.opener && !window.opener.closed) {
+                window.opener.postMessage({ type: 'OAUTH_AUTH_SUCCESS', user: user }, window.location.origin);
+                setTimeout(function(){ window.close(); }, 500);
               } else {
-                window.location.href = '/';
+                // Fallback: store in sessionStorage and redirect to home
+                sessionStorage.setItem('oauth_pending_user', JSON.stringify(user));
+                window.location.replace('/');
               }
-            } catch (err) { window.location.href = '/'; }
+            } catch (err) {
+              sessionStorage.setItem('oauth_pending_user', JSON.stringify(user));
+              window.location.replace('/');
+            }
           </script>
         </body>
       </html>

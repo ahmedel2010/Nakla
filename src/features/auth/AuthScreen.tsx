@@ -144,10 +144,10 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onSuccess, lang = "ar" }
 
       const allowedOrigins = [
         window.location.origin,
-        "http://localhost:5173",
         "http://localhost:3000",
-        "http://127.0.0.1:5173",
+        "http://localhost:5173",
         "http://127.0.0.1:3000",
+        "http://127.0.0.1:5173",
       ];
       const isAllowed =
         allowedOrigins.includes(origin) ||

@@ -76,6 +76,43 @@ export default function App() {
     setUser(null);
   };
 
+  // Handle OAuth redirect fallback (when popup opener is not available)
+  useEffect(() => {
+    const pendingUser = sessionStorage.getItem("oauth_pending_user");
+    if (pendingUser) {
+      try {
+        const userInfo = JSON.parse(pendingUser);
+        sessionStorage.removeItem("oauth_pending_user");
+        if (userInfo && userInfo.email) {
+          const usersJson = localStorage.getItem("cv_eval_users") || "[]";
+          const users = JSON.parse(usersJson);
+          const cleanEmail = userInfo.email.trim().toLowerCase();
+          let foundUser = users.find((u: any) => u.email.toLowerCase() === cleanEmail);
+          if (!foundUser) {
+            foundUser = {
+              name: userInfo.name || cleanEmail.split("@")[0],
+              email: cleanEmail,
+              password: "social_signup_auth",
+              role: "Software Developer"
+            };
+            users.push(foundUser);
+            localStorage.setItem("cv_eval_users", JSON.stringify(users));
+          }
+          const userData = {
+            name: foundUser.name,
+            email: foundUser.email,
+            role: foundUser.role || "Software Developer",
+            photo: userInfo.picture || foundUser.photo || ""
+          };
+          localStorage.setItem("cv_eval_current_user", JSON.stringify(userData));
+          setUser(userData);
+        }
+      } catch (e) {
+        sessionStorage.removeItem("oauth_pending_user");
+      }
+    }
+  }, []);
+
   if (!user) {
     return (
       <div className="flex flex-col min-h-screen w-full bg-[#f8fafc] dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased relative overflow-hidden" dir={lang === "ar" ? "rtl" : "ltr"}>

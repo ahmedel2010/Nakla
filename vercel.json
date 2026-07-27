@@ -6,6 +6,18 @@
             "destination": "/api"
         },
         {
+            "source": "/auth/callback",
+            "destination": "/api"
+        },
+        {
+            "source": "/auth/callback/",
+            "destination": "/api"
+        },
+        {
+            "source": "/auth/google/url",
+            "destination": "/api"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }

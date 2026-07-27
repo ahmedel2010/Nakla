@@ -23,6 +23,7 @@ app.use("/api", coverLetterRouter);
 app.use("/api", translateRouter);
 app.use("/api", skillsGapRouter);
 app.use("/api", authRouter);
+app.use("/", authRouter);
 app.use("/api", supportRouter);
 
 app.use("/api", (err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
