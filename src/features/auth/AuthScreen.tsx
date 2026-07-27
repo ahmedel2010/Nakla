@@ -142,7 +142,20 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onSuccess, lang = "ar" }
     const handleOAuthMessage = async (event: MessageEvent) => {
       const origin = event.origin;
 
-      if (!origin.endsWith(".run.app") && !origin.includes("localhost") && !origin.includes("127.0.0.1")) {
+      const allowedOrigins = [
+        window.location.origin,
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:3000",
+      ];
+      const isAllowed =
+        allowedOrigins.includes(origin) ||
+        origin.endsWith(".run.app") ||
+        origin.endsWith(".vercel.app") ||
+        origin.endsWith(".netlify.app");
+
+      if (!isAllowed) {
         return;
       }
 
