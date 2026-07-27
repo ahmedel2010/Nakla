@@ -139,7 +139,11 @@ authRouter.post("/send-verification-code", async (req, res): Promise<any> => {
 
     const isSmtpConfigured = process.env.SMTP_USER && process.env.SMTP_PASS;
     if (!isSmtpConfigured) {
-      return res.status(400).json({ error: "خادم البريد (SMTP) غير مفعّل. يرجى تهيئة SMTP_USER و SMTP_PASS في الإعدادات." });
+      return res.json({ 
+        success: true, 
+        message: `[وضع المحاكاة]: خادم SMTP غير مفعّل. رمز التحقق الخاص بك هو: ${code}`, 
+        deliveryMethod: "sandbox" 
+      });
     }
 
     const transporter = nodemailer.createTransport({

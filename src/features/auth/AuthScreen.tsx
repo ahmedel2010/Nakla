@@ -245,10 +245,10 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onSuccess, lang = "ar" }
         throw new Error(data.error || "فشل إرسال كود التحقق الأمني.");
       }
       setTimeLeft(60);
-      return true;
+      return { success: true, message: data.message };
     } catch (err: any) {
       setError(err.message || "فشلت عملية إرسال الرمز إلى بريدك الإلكتروني.");
-      return false;
+      return { success: false };
     }
   };
 
@@ -301,10 +301,10 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onSuccess, lang = "ar" }
           throw new Error("هذا البريد الإلكتروني مسجّل بالفعل في المنصة!");
         }
 
-        const sent = await sendCode(email);
-        if (sent) {
+        const result = await sendCode(email);
+        if (result.success) {
           setIsVerifying(true);
-          setSuccess("تم إرسال كود تأكيد الهوية للبريد المسجل بنجاح!");
+          setSuccess(result.message || "تم إرسال كود تأكيد الهوية للبريد المسجل بنجاح!");
         }
       }
     } catch (err: any) {
@@ -394,10 +394,10 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onSuccess, lang = "ar" }
         throw new Error("البريد الإلكتروني المدخل غير مسجل لدينا في المنصة.");
       }
 
-      const sent = await sendCode(email);
-      if (sent) {
+      const result = await sendCode(email);
+      if (result.success) {
         setForgotPasswordStep("verification");
-        setSuccess("تم إرسال كود إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.");
+        setSuccess(result.message || "تم إرسال كود إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.");
       }
     } catch (err: any) {
       setError(err.message || "حدث خطأ غير متوقع. يرجى المحاولة لاحقاً.");
@@ -642,9 +642,9 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onSuccess, lang = "ar" }
                   setVerifyError(null);
                   setSuccess(null);
                   setVerificationCode("");
-                  const sent = await sendCode(email);
-                  if (sent) {
-                    setSuccess("تم إرسال كود تحقق جديد لبريدك بنجاح.");
+                  const result = await sendCode(email);
+                  if (result.success) {
+                    setSuccess(result.message || "تم إرسال كود تحقق جديد لبريدك بنجاح.");
                   }
                 }}
                 className="flex items-center gap-1 font-bold text-indigo-600 hover:text-indigo-700 disabled:text-slate-450 dark:text-indigo-400 dark:disabled:text-slate-550 transition"
